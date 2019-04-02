@@ -34,7 +34,7 @@ public class UpLoadService {
 
             file.transferTo(dest);
             //返回结果
-            return "i.leyou.com";
+            return "i8888888888888888888888888888888888e.leyou.com";
         } catch (IOException e) {
             e.printStackTrace();
             throw new MyException(MyExceptionEnums.UPLOAD_IMAGE_ERROR);
