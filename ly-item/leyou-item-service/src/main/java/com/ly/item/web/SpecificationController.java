@@ -1,13 +1,14 @@
 package com.ly.item.web;
 
+import com.ly.common.enums.MyExceptionEnums;
+import com.ly.common.exception.MyException;
 import com.ly.item.service.SpecificationService;
-import com.ly.pojo.Specification;
+import com.ly.pojo.SpecGroup;
+import com.ly.pojo.SpecParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,8 +22,17 @@ public class SpecificationController {
     private SpecificationService specificationService;
 
     @GetMapping("groups/{cid}")
-    public ResponseEntity<List<Specification>> querySpecByCid(@PathVariable("cid") Long cid){
+    public ResponseEntity<List<SpecGroup>> querySpecByCid(@PathVariable("cid") Long cid){
         List specList = specificationService.querySpecByCid(cid);
         return ResponseEntity.ok(specList);
+    }
+
+    @GetMapping("params")
+    public ResponseEntity<List<SpecParam>> queryParamByGid(@RequestParam(name = "gid") Long gid){
+        List<SpecParam> params= specificationService.queryParamByGid(gid);
+        if (CollectionUtils.isEmpty(params)){
+            throw  new MyException(MyExceptionEnums.SPECIFICATION_PARAM_IS_NOT_FOUND);
+        }
+        return ResponseEntity.ok(params);
     }
 }
