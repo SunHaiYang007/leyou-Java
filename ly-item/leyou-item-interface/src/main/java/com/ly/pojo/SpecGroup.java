@@ -3,16 +3,19 @@ package com.ly.pojo;
 import lombok.Data;
 import tk.mybatis.mapper.annotation.KeySql;
 
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * Created by HXin on 2019/4/3.
  */
-@Table(name="tb_specification")
+@Table(name="tb_spec_group")
 @Data
-public class Specification {
+public class SpecGroup {
     @Id
-    private Long categoryId;
-    private String specifications;
+    @KeySql(useGeneratedKeys = true)
+    private Long id;
+    private Long cid;
+    private String name;
 }
