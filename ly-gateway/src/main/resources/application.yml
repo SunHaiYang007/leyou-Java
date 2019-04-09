@@ -15,6 +15,7 @@ zuul:
       path: /upload/**
       serviceID: upload-service
       strip-prefix: false
+  ignored-services: upload-servie
 
 ribbon:
   ConnectTimeout: 1000 # 连接超时时间(ms)

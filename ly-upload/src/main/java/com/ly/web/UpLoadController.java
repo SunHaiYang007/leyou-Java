@@ -1,8 +1,9 @@
-package com.ly.com.ly.web;
+package com.ly.web;
 
-import com.ly.com.ly.service.UpLoadService;
+
 import com.ly.common.enums.MyExceptionEnums;
 import com.ly.common.exception.MyException;
+import com.ly.service.UpLoadService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class UpLoadController {
 
     @PostMapping("image")
     public ResponseEntity<String> uploadImage(@RequestParam("file")MultipartFile file){
-        String url = upLoadService.uploadImage(file);
+        String url = upLoadService.upload(file);
         if (StringUtils.isBlank(url)){
             throw new MyException(MyExceptionEnums.UPLOAD_IMAGE_ERROR);
         }
