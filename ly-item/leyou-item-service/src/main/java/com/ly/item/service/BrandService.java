@@ -6,14 +6,12 @@ import com.ly.common.enums.MyExceptionEnums;
 import com.ly.common.exception.MyException;
 import com.ly.item.mapper.BrandMapper;
 import com.ly.pojo.Brand;
-import com.ly.pojo.PageResult;
+import com.ly.common.vo.PageResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -22,6 +20,7 @@ import java.util.List;
  * Created by HXin on 2019/4/1.
  */
 @Service
+@Transactional
 public class BrandService {
 
     @Autowired
@@ -75,5 +74,21 @@ public class BrandService {
                 throw new MyException(MyExceptionEnums.INSERT_BRAND_ERROR);
             }
         }
+    }
+
+    public Brand queryBrandById(Long brandId) {
+        Brand brand = brandMapper.selectByPrimaryKey(brandId);
+        if (brand==null){
+            throw new MyException(MyExceptionEnums.BRAND_IS_NOT_FOUND);
+        }
+        return brand;
+    }
+
+    public List<Brand> queryBrandByCid(Long cid) {
+        List<Brand> list = brandMapper.queryBrandByCid(cid);
+        if (CollectionUtils.isEmpty(list)){
+            throw new MyException(MyExceptionEnums.BRAND_IS_NOT_FOUND);
+        }
+        return list;
     }
 }

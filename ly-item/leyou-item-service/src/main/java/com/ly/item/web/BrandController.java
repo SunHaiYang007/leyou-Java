@@ -4,10 +4,11 @@ import com.ly.common.enums.MyExceptionEnums;
 import com.ly.common.exception.MyException;
 import com.ly.item.service.BrandService;
 import com.ly.pojo.Brand;
-import com.ly.pojo.PageResult;
+import com.ly.common.vo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,4 +42,14 @@ public class BrandController {
         brandService.saveBrand(brand,cids);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @GetMapping("cid/{cid}")
+    public ResponseEntity<List<Brand>> queryBrandByCid(@PathVariable(name = "cid") Long cid){
+        List<Brand> list = brandService.queryBrandByCid(cid);
+        if (CollectionUtils.isEmpty(list)){
+            throw new MyException(MyExceptionEnums.BRAND_IS_NOT_FOUND);
+        }
+        return ResponseEntity.ok(list);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.ly.pojo;
+package com.ly.common.vo;
 
 import lombok.Data;
 

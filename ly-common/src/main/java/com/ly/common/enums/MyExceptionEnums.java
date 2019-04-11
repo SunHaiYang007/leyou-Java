@@ -17,8 +17,11 @@ public enum MyExceptionEnums {
     INSERT_BRAND_ERROR(500,"新增品牌失败"),
     UPLOAD_IMAGE_ERROR(500,"上传图片失败"),
     INVALID_IMAGE(500,"非法的文件类型"),
-    SPECIFICATION_GROUP_IS_NOT_FOUND(500,"参数规格组没有找到"),
-    SPECIFICATION_PARAM_IS_NOT_FOUND(500,"参数规格没有找到"),
+    SPECIFICATION_GROUP_IS_NOT_FOUND(404,"参数规格组没有找到"),
+    SPECIFICATION_PARAM_IS_NOT_FOUND(404,"参数规格没有找到"),
+    GOODS_IS_NOT_FOUND(404,"查找的商品不存在"),
+    SAVE_GOODS_ERROR(500,"保存商品信息失败"),
+    SAVE_SPUDETAIL_ERROR(500,"保存商品信息失败"),
     ;
     private int code;
     private String message;

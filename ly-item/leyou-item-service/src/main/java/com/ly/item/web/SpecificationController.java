@@ -28,8 +28,13 @@ public class SpecificationController {
     }
 
     @GetMapping("params")
-    public ResponseEntity<List<SpecParam>> queryParamByGid(@RequestParam(name = "gid") Long gid){
-        List<SpecParam> params= specificationService.queryParamByGid(gid);
+    public ResponseEntity<List<SpecParam>> queryParamByGid(
+            @RequestParam(name = "gid" ,required = false) Long gid,
+            @RequestParam(name = "cid",required = false) Long cid,
+            @RequestParam(name = "searching",required = false) Boolean searching,
+            @RequestParam(name = "generic",required = false) Boolean generic
+    ){
+        List<SpecParam> params= specificationService.queryParamByGid(gid,cid,searching,generic);
         if (CollectionUtils.isEmpty(params)){
             throw  new MyException(MyExceptionEnums.SPECIFICATION_PARAM_IS_NOT_FOUND);
         }
