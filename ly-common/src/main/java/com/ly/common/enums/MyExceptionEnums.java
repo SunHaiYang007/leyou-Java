@@ -20,8 +20,14 @@ public enum MyExceptionEnums {
     SPECIFICATION_GROUP_IS_NOT_FOUND(404,"参数规格组没有找到"),
     SPECIFICATION_PARAM_IS_NOT_FOUND(404,"参数规格没有找到"),
     GOODS_IS_NOT_FOUND(404,"查找的商品不存在"),
+    SPU_IS_NOT_FOUND(404,"查找的商品SPU不存在"),
+    SKU_IS_NOT_FOUND(404,"查找的商品SKU不存在"),
     SAVE_GOODS_ERROR(500,"保存商品信息失败"),
-    SAVE_SPUDETAIL_ERROR(500,"保存商品信息失败"),
+    UPDATE_SPU_ERROR(500,"更新商品SPU失败"),
+    UPDATE_SPUDETAIL_ERROR(500,"更新商品详情失败"),
+    SAVE_SPUDETAIL_ERROR(500,"保存商品详情失败"),
+    DELETE_SKU_ERROR(500,"删除商品SKU失败"),
+    DELETE_STOCK_ERROR(500,"删除商品库存失败"),
     ;
     private int code;
     private String message;
