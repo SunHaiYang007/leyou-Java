@@ -24,6 +24,15 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
+    /**
+     * 分页查询品牌信息
+     * @param page
+     * @param rows
+     * @param sortBy
+     * @param desc
+     * @param key
+     * @return
+     */
     @GetMapping("page")
     public ResponseEntity<PageResult<Brand>> queryByPage(
             @RequestParam(value = "page",defaultValue = "1") Integer page,
@@ -37,12 +46,24 @@ public class BrandController {
             }
             return ResponseEntity.ok(results);
     }
+
+    /**
+     * 保存品牌信息
+     * @param brand
+     * @param cids
+     * @return
+     */
     @PostMapping
     public ResponseEntity<Void> saveBrand(Brand brand, @RequestParam(value = "cids")List<Long> cids){
         brandService.saveBrand(brand,cids);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /**
+     * 根据分类id查询所有品牌
+     * @param cid
+     * @return
+     */
     @GetMapping("cid/{cid}")
     public ResponseEntity<List<Brand>> queryBrandByCid(@PathVariable(name = "cid") Long cid){
         List<Brand> list = brandService.queryBrandByCid(cid);
@@ -50,6 +71,16 @@ public class BrandController {
             throw new MyException(MyExceptionEnums.BRAND_IS_NOT_FOUND);
         }
         return ResponseEntity.ok(list);
+    }
+
+    /**
+     * 根据品牌id查询品牌信息
+     * @param id
+     * @return
+     */
+    @GetMapping("{id}")
+    public ResponseEntity<Brand> queryBrandById(@PathVariable(name = "id") Long id){
+        return ResponseEntity.ok(brandService.queryBrandById(id));
     }
 
 }

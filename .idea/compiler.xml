@@ -10,6 +10,7 @@
         <module name="leyou-item-interface" />
         <module name="leyouitemservice" />
         <module name="ly-common" />
+        <module name="ly-search" />
         <module name="ly-upload" />
         <module name="lygateway" />
         <module name="lyregistry" />
@@ -21,6 +22,7 @@
       <module name="leyou-item-interface" options="-parameters" />
       <module name="leyouitemservice" options="-parameters" />
       <module name="ly-common" options="-parameters" />
+      <module name="ly-search" options="-parameters" />
       <module name="ly-upload" options="-parameters" />
       <module name="lygateway" options="-parameters" />
       <module name="lyregistry" options="-parameters" />
